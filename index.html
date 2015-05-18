@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<script src="//cdn.jsdelivr.net/pouchdb/3/pouchdb.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var local_db = new PouchDB("db_csnw", {adapter: "websql"});
+  var remote_db = new PouchDB("http://localhost:8084/db/db_csnw");
+  var sync = local_db.sync(remote_db, {
+    live: true,
+    retry: true
+  }).on("change", function (change) {
+    console.log("something changed");
+  }).on("paused", function (info) {
+    console.log("replication was paused, usually because of a lost connection");
+  }).on("active", function (info) {
+    console.log("replication was resumed");
+  }).on("error", function (err) {
+    console.error(err);
+  });
+  window.addEventListener("beforeunload", function() {
+    sync.cancel();
+  });
+});
+</script>

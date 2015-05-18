@@ -1,0 +1,15 @@
+{
+  "name": "pouchdb-issue-3848",
+  "version": "0.1.0",
+  "author": "Cornerstone Systems <support@cornerstonenw.com>",
+  "description": "PouchDB Issue #3848",
+  "dependencies": {
+    "express": "4.12.3",
+    "express-pouchdb": "0.14.0",
+    "pouchdb": "git+https://github.com/pouchdb/pouchdb.git",
+    "memdown": "1.0.0"
+  },
+  "engines": {
+    "node": ">=0.10"
+  }
+}
